@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Col, Container, Row, Badge } from "react-bootstrap";
+import { Carousel, Container, Badge, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Loader = () => <div className="loader-style"></div>;
 
@@ -7,6 +8,7 @@ const MoviesSection = ({ sectionTitle, searchQuery }) => {
 	const [movies, setMovies] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(null);
+	const [index, setIndex] = useState(0);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -28,41 +30,56 @@ const MoviesSection = ({ sectionTitle, searchQuery }) => {
 		fetchData();
 	}, [searchQuery]);
 
+	const handleSelect = (selectedIndex, e) => {
+		setIndex(selectedIndex);
+	};
+
+	// Funzione per suddividere i film in gruppi di 6
+	const chunkMovies = (movies, size) =>
+		Array.from({ length: Math.ceil(movies.length / size) }, (_, index) => index * size).map((begin) =>
+			movies.slice(begin, begin + size)
+		);
+
+	const movieChunks = chunkMovies(movies, 6);
+
 	if (error) return <p>Error: {error}</p>;
+	if (isLoading) return <Loader />;
 
 	return (
 		<div className="my-bg">
-			<Container fluid>
+			<Container fluid className="my-1">
 				<h2 className="text-light">{sectionTitle}</h2>
-				<Row className="row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-6 my-2 flex-nowrap overFlow movie-section-container">
-					{isLoading
-						? Array.from({ length: 6 }, (_, idx) => (
-								<Col key={idx} xs={12} sm={6} md={4} lg={3} xl={2} className="my-1 text-center px-1">
-									<Loader />
-								</Col>
-						  ))
-						: movies.map((movie) => (
-								<Col
-									key={movie.imdbID}
-									xs={12}
-									sm={6}
-									md={4}
-									lg={3}
-									xl={2}
-									className="text-center px-1 position-relative"
-								>
-									<img
-										className="img-fluid my-movie"
-										src={movie.Poster}
-										alt={movie.Title}
-										style={{ width: "100%", height: "150px", objectFit: "cover" }}
-									/>
-									<Badge bg="danger" className="movie-badge">
-										{movie.Type.charAt(0).toUpperCase() + movie.Type.slice(1)}
-									</Badge>
-								</Col>
-						  ))}
-				</Row>
+				<Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
+					{movieChunks.map((chunk, chunkIdx) => (
+						<Carousel.Item key={chunkIdx}>
+							<Row className="g-1">
+								{chunk.map((movie) => (
+									<Col
+										key={movie.imdbID}
+										xs={12}
+										sm={6}
+										md={4}
+										lg={3}
+										xl={2}
+										className="text-center px-1 position-relative"
+									>
+										<Link to={`/TvShow/${movie.imdbID}`}>
+											<img
+												className="d-block h-100 w-100 pointer my-movie"
+												src={movie.Poster}
+												alt={movie.Title}
+												style={{ height: "150px", objectFit: "cover" }}
+											/>
+										</Link>
+										<Badge bg="danger" className="movie-badge">
+											{movie.Type.charAt(0).toUpperCase() + movie.Type.slice(1)}
+										</Badge>
+									</Col>
+								))}
+							</Row>
+						</Carousel.Item>
+					))}
+				</Carousel>
 			</Container>
 		</div>
 	);

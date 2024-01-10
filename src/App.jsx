@@ -1,35 +1,43 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MyNavbar from "./components/Nav";
 import TVShowsHeader from "./components/ActionBar";
 import FilmGrid from "./components/Gallery";
 import Footer from "./Footer";
 import EditProfilePage from "./components/EditProfile";
-import { useState } from "react";
+import NotFound from "./NotFound";
+import MovieDetails from "./components/MovieDetails";
 
 function App() {
-	const [showEditProfile, setShowEditProfile] = useState(false);
-
-	const toggleEditProfile = () => setShowEditProfile(!showEditProfile);
-
 	return (
-		<div className="App">
-			<MyNavbar onProfileClick={toggleEditProfile} />
-			{showEditProfile ? (
-				<EditProfilePage />
-			) : (
+		<BrowserRouter>
+			<div className="App">
 				<>
-					{/* SULLA NAVBAR CLICCARE LÍCONA DEL PROFILO IN ALTO A DESTRA PER CAMBIARE VISUALIZZAZIONE */}
+					<MyNavbar />
 					<TVShowsHeader />
-					<FilmGrid sectionTitle={"Trending Now"} searchQuery={"Harry Potter"} />
-					<FilmGrid sectionTitle={"Watch it Again"} searchQuery={"Lord Of Rings"} />
-					<FilmGrid sectionTitle={"New Releases"} searchQuery={"Spider Man"} />
-					<FilmGrid sectionTitle={"For You"} searchQuery={"Avengers"} />
-					<FilmGrid sectionTitle={"Old Movies"} searchQuery={"Disney"} />
-					<Footer />
 				</>
-			)}
-		</div>
+				<Routes>
+					<Route path="/edit-profile" element={<EditProfilePage />} />
+					<Route
+						path="/"
+						element={
+							<>
+								<FilmGrid sectionTitle={"Trending Now"} searchQuery={"Harry Potter"} />
+								<FilmGrid sectionTitle={"Watch it Again"} searchQuery={"Lord Of Rings"} />
+								<FilmGrid sectionTitle={"New Releases"} searchQuery={"Spider Man"} />
+								<FilmGrid sectionTitle={"For You"} searchQuery={"Avengers"} />
+								<FilmGrid sectionTitle={"Old Movies"} searchQuery={"Disney"} />
+								<Footer />
+							</>
+						}
+					/>
+					<Route path="/TvShow/:movieId" element={<MovieDetails />} />
+					<Route path="*" element={<NotFound />} />
+				</Routes>
+			</div>
+		</BrowserRouter>
 	);
 }
 

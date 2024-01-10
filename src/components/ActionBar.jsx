@@ -1,6 +1,7 @@
 import React from "react";
-import { Container, Dropdown, DropdownButton } from "react-bootstrap";
+import { Container, DropdownButton, DropdownItem } from "react-bootstrap";
 import { Grid, Grid3x3 } from "react-bootstrap-icons";
+// import TvShow from "./TvShow";
 
 const TVShowsHeader = () => {
 	return (
@@ -9,9 +10,9 @@ const TVShowsHeader = () => {
 				<div className="d-flex">
 					<h2 className="mb-3 text-light">TV Shows</h2>
 					<DropdownButton as="div" className="ms-4 mt-1 text-light my-btn" title="Genres" size="sm">
-						<Dropdown.Item href="#">Comedy</Dropdown.Item>
-						<Dropdown.Item href="#">Drama</Dropdown.Item>
-						<Dropdown.Item href="#">Thriller</Dropdown.Item>
+						<DropdownItem href="#">Comedy</DropdownItem>
+						<DropdownItem href="#">Drama</DropdownItem>
+						<DropdownItem href="#">Thriller</DropdownItem>
 					</DropdownButton>
 				</div>
 				<div className="text-light d-flex align-item-center justify-content-between  d-none d-md-inline-block">

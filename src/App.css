@@ -100,11 +100,12 @@ Footer a:hover {
 	color: #6c757d;
 }
 
-img.my-movie {
+.my-movie {
 	transition: transform 0.2s;
+	z-index: 1000;
 }
 
-img.my-movie:hover {
+.my-movie:hover {
 	transform: scale(1.1);
 }
 
@@ -152,4 +153,10 @@ footer button.my-btn:active {
 .modal-footer,
 .modal-header {
 	border: none;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+	max-width: 20px;
+	margin-block: auto;
 }
