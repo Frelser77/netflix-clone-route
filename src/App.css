@@ -1,0 +1,155 @@
+:root {
+	--bs-btn-border-radius: 0 !important;
+}
+
+.App,
+.my-bg {
+	background-color: #221f1f;
+}
+
+.my-bg-modal {
+	background-color: #5c636a;
+}
+
+/* GALLERY */
+
+.pointer {
+	cursor: pointer;
+}
+
+.movie-section-container {
+	overflow-x: auto;
+}
+
+.movie-section-container::-webkit-scrollbar {
+	display: none;
+}
+
+.my-btn .btn {
+	border-color: #fff;
+	background-color: transparent;
+	border-radius: 0;
+}
+
+.my-btn {
+	background-color: transparent;
+	border-color: #6c757d;
+}
+
+.my-btn:hover {
+	border-color: transparent;
+	background-color: transparent;
+	color: white;
+}
+
+.my-btn .btn:focus {
+	box-shadow: none;
+	background-color: transparent;
+	border-color: #6c757d;
+}
+
+.my-btn .dropdown-menu {
+	background-color: #161515;
+	border-radius: 15px;
+}
+
+.my-btn .dropdown-item {
+	color: #fff;
+}
+
+.my-btn .dropdown-item:hover {
+	background-color: #333;
+}
+
+/* SCROLL BAR */
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: #333;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
+Footer a {
+	text-decoration: none;
+	color: #6c757d;
+}
+
+Footer a:hover {
+	color: #6c757d;
+}
+
+.my-icon-color {
+	color: #6c757d;
+}
+
+.my-icon-color:hover {
+	color: #afb8bf;
+}
+
+.my-color {
+	color: #6c757d;
+}
+
+img.my-movie {
+	transition: transform 0.2s;
+}
+
+img.my-movie:hover {
+	transform: scale(1.1);
+}
+
+footer button.my-btn:active {
+	border-color: transparent !important;
+	background-color: transparent !important;
+}
+
+.loader-style {
+	height: 150px;
+	background-color: #7a7a7a;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.movie-badge {
+	position: absolute;
+	top: 0;
+	right: 4px;
+	border-radius: 0;
+}
+
+.overFlow {
+	overflow-y: hidden;
+}
+
+.form-check-input {
+	border: none;
+}
+
+.input-group-text {
+	border: none;
+	border-radius: 0;
+	padding: 0;
+	background-color: transparent;
+}
+
+.input-group {
+	flex-wrap: nowrap;
+	align-items: flex-start;
+	gap: 8px;
+}
+
+.modal-footer,
+.modal-header {
+	border: none;
+}
