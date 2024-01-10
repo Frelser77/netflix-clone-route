@@ -1,5 +1,5 @@
 import React from "react";
-import MovieDetails from "./MovieDetails";
+import MovieDetails from "./MovieDetailsSkeleton ";
 
 const TvShow = () => {
 	<div className="d-flex">

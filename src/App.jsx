@@ -5,9 +5,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MyNavbar from "./components/Nav";
 import TVShowsHeader from "./components/ActionBar";
 import FilmGrid from "./components/Gallery";
-import Footer from "./Footer";
+import Footer from "./components/Footer";
 import EditProfilePage from "./components/EditProfile";
-import NotFound from "./NotFound";
+import NotFound from "./components/NotFound";
 import MovieDetails from "./components/MovieDetails";
 
 function App() {
@@ -29,7 +29,6 @@ function App() {
 								<FilmGrid sectionTitle={"New Releases"} searchQuery={"Spider Man"} />
 								<FilmGrid sectionTitle={"For You"} searchQuery={"Avengers"} />
 								<FilmGrid sectionTitle={"Old Movies"} searchQuery={"Disney"} />
-								<Footer />
 							</>
 						}
 					/>
@@ -37,6 +36,7 @@ function App() {
 					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</div>
+			<Footer />
 		</BrowserRouter>
 	);
 }
